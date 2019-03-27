@@ -7,11 +7,12 @@ module.exports = jwt;
 function jwt() {
     const secret = config.secret;
     return expressJwt({ secret, isRevoked }).unless({
-        path: [
-            // public routes that don't require authentication
-            '/users/authenticate',
-            '/users/register'
-        ]
+      path: [
+        // public routes that don't require authentication
+        "/users/authenticate",
+        "/users/register",
+        "/users/delete"
+      ]
     });
 }
 
