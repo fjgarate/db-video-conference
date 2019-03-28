@@ -10,7 +10,7 @@ router.get('/current', getCurrent);
 router.get('/:id', getById);
 router.put('/:id', update);
 router.delete('/:id', _delete);
-router.getPatients("/patients/:id", getPatients);
+router.get("/patients/:id", getPatients);
 module.exports = router;
 
 function authenticate(req, res, next) {
