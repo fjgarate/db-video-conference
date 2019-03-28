@@ -5,12 +5,13 @@ const db = require('_helpers/db');
 const User = db.User;
 
 module.exports = {
-    authenticate,
-    getAll,
-    getById,
-    create,
-    update,
-    delete: _delete
+  authenticate,
+  getAll,
+  getById,
+  create,
+  update,
+  delete: _delete,
+  getPatients
 };
 
 async function authenticate({ username, password }) {
@@ -72,4 +73,7 @@ async function update(id, userParam) {
 
 async function _delete(id) {
     await User.findByIdAndRemove(id);
+}
+async function getPatients(doctorId) {
+  return await User.find({ doctorIds: [doctorId] });
 }

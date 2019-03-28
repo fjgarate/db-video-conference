@@ -10,7 +10,7 @@ router.get('/current', getCurrent);
 router.get('/:id', getById);
 router.put('/:id', update);
 router.delete('/:id', _delete);
-
+router.getPatients("/patients/:id", getPatients);
 module.exports = router;
 
 function authenticate(req, res, next) {
@@ -52,5 +52,11 @@ function update(req, res, next) {
 function _delete(req, res, next) {
     userService.delete(req.params.id)
         .then(() => res.json({}))
+        .catch(err => next(err));
+}
+
+function getPatients(req, res, next) {
+    userService.getPatients(req.params.id)
+        .then(user => user ? res.json(user) : res.sendStatus(404))
         .catch(err => next(err));
 }
