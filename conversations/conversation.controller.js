@@ -6,7 +6,7 @@ const conversationService = require('./conversation.service');
 router.post('/register', register);   //crea conversacion
 //router.post("/message", addMessage);  //añade mensaje
 router.get('/', getAll);              //devuelve todas las convesaciones
-//router.get('/:id', getById);          //devuelve todas las conversaciones en las que participa
+router.get("/:userName", getConversationsByUserName);          //devuelve todas las conversaciones en las que participa
 router.put('/:id', addMessage);
 //router.delete('/:id', _delete);
 
@@ -31,5 +31,12 @@ function addMessage(req, res, next) {
   conversationService
     .addMessage(req.params.id, req.body)
     .then(() => res.json({}))
+    .catch(err => next(err));
+}
+
+function getConversationsByUserName(req, res, next) {
+  conversationService
+    .getConversationsByUserName(req.params.userName)
+    .then(conversation => res.json(conversation))
     .catch(err => next(err));
 }

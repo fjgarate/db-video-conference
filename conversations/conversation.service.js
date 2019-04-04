@@ -8,6 +8,7 @@ module.exports = {
   create,
   getAll,
   addMessage,
+  getConversationsByUserName,
 };
 
 
@@ -15,7 +16,10 @@ async function getAll() {
     
     return await Conversation.find().select("-hash");
 }
+async function getConversationsByUserName(userName) {
 
+  return await Conversation.find({ participants: userName });
+}
 async function getById(id) {
     return await User.findById(id).select('-hash');
 }
@@ -41,7 +45,4 @@ async function addMessage(id, newMessage) {
 
 async function _delete(id) {
     await User.findByIdAndRemove(id);
-}
-async function getPatients(doctorId) {
-  return await User.find({ doctorIds: [doctorId] });
 }
