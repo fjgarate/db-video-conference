@@ -6,9 +6,11 @@ const User = db.User;
 const Conversation = db.Conversation;
 module.exports = {
   create,
+  getById,
   getAll,
   addMessage,
-  getConversationsByUserName,
+  getConversationsByUserId,
+  delete: _delete
 };
 
 
@@ -16,12 +18,14 @@ async function getAll() {
     
     return await Conversation.find().select("-hash");
 }
-async function getConversationsByUserName(userName) {
-
+/*async function getConversationsByUserName(userName) {
   return await Conversation.find({ participants: userName });
+}*/
+async function getConversationsByUserId(id) {
+  return await Conversation.find({ participants: id });
 }
 async function getById(id) {
-    return await User.findById(id).select('-hash');
+  return await Conversation.findById(id).select('-hash');
 }
 
 async function create(conversationParam) {
@@ -44,5 +48,5 @@ async function addMessage(id, newMessage) {
 }
 
 async function _delete(id) {
-    await User.findByIdAndRemove(id);
+  await Conversation.findByIdAndRemove(id);
 }
