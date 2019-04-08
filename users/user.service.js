@@ -11,7 +11,8 @@ module.exports = {
   create,
   update,
   delete: _delete,
-  getPatients
+  getPatients,
+  getDoctors
 };
 
 async function authenticate({ username, password }) {
@@ -76,4 +77,9 @@ async function _delete(id) {
 }
 async function getPatients(doctorId) {
   return await User.find({ doctorIds: [doctorId] });
+}
+
+async function getDoctors() {
+    return await User.find( {role: 'doctor' });
+
 }

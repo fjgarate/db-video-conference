@@ -11,6 +11,7 @@ router.get('/:id', getById);
 router.put('/:id', update);
 router.delete('/:id', _delete);
 router.get("/patients/:id", getPatients);
+router.get("/doctors", getDoctors)
 module.exports = router;
 
 function authenticate(req, res, next) {
@@ -59,4 +60,11 @@ function getPatients(req, res, next) {
     userService.getPatients(req.params.id)
         .then(user => user ? res.json(user) : res.sendStatus(404))
         .catch(err => next(err));
+}
+
+function getDoctors(req, res, next) {
+  userService
+    .getDoctors(req.params.id)
+    .then(user => (user ? res.json(user) : res.sendStatus(404)))
+    .catch(err => next(err));
 }
