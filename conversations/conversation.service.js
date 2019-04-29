@@ -4,11 +4,13 @@ const bcrypt = require('bcryptjs');
 const db = require('_helpers/db');
 const User = db.User;
 const Conversation = db.Conversation;
+
 module.exports = {
   create,
   getById,
   getAll,
   addMessage,
+  update,
   getConversationsByUserId,
   delete: _delete
 };
@@ -44,6 +46,20 @@ async function addMessage(id, newMessage) {
   } catch (err) {
     throw err;
   }
+  await conversation.save();
+}
+
+async function update(id, converParam) {
+  const conversation = await Conversation.findById(id);
+
+  // validate
+  if (!conversation) throw 'Conversation not found';
+
+  // copy userParam properties to user
+  Object.extend(true,conversation, converParam);
+
+  
+
   await conversation.save();
 }
 

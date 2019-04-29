@@ -5,14 +5,17 @@ const conversationSchema = new Schema({
   createdDate: { type: Date, default: Date.now },
   createUsername: { type: String, required: true },
   participants: [{ type: String }],
+  title: { type: String },
   messages: [
     {
       createdDate: { type: Date, default: Date.now },
       author: { type: String },
       text: String,
-      read: Boolean
+      read: { type: Boolean, default: false }
+
     }
   ]
+
 });
 /*const messageSchema = Schema({
   createdDate: { type: Date, default: Date.now },

@@ -12,7 +12,7 @@ function jwt() {
         "/users/authenticate",
         "/users/register",
         "/users/delete",
-        "/users/doctors",
+        "/users/doctor",
         "/conversations/register"
       ]
     });

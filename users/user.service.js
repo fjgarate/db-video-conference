@@ -80,6 +80,9 @@ async function getPatients(doctorId) {
 }
 
 async function getDoctors() {
-    return await User.find( {role: 'doctor' });
+    //return await User.find( role === 'doctor' );
+    if (User.role==='doctor') {
+    return await User.find().select('-hash');
+    }
 
 }

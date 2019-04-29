@@ -9,6 +9,10 @@ router.get('/', getAll);              //devuelve todas las convesaciones
 router.get("/user/:id", getConversationsByUserId);          //devuelve todas las conversaciones en las que participa
 router.put('/:id', addMessage);
 router.delete('/:id', _delete);
+router.put('/update/:id', update);
+router.get('/:id', getById);
+
+
 
 module.exports = router;
 function register(req, res, next) {
@@ -42,9 +46,30 @@ function getConversationsByUserId(req, res, next) {
     .then(conversation => res.json(conversation))
     .catch(err => next(err));
 }
+
+function getMessageById(req, res, next) {
+  conversationService
+    .getConversationsByUserId(req.params.id)
+    .then(conversation => res.json(conversation))
+    .catch(err => next(err));
+}
+
+function update(req, res, next) {
+  conversationService.update(req.params.id, req.body)
+    .then(() => res.json({}))
+    .catch(err => next(err));
+}
+
 function _delete(req, res, next) {
   conversationService
     .delete(req.params.id)
     .then(() => res.json({}))
+    .catch(err => next(err));
+}
+
+function getById(req, res, next) {
+  conversationService
+    .getById(req.params.id)
+    .then(conversation => res.json(conversation))
     .catch(err => next(err));
 }
