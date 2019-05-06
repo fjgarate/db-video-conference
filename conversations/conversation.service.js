@@ -50,15 +50,7 @@ async function addMessage(id, newMessage) {
 }
 
 async function update(id, converParam) {
-  const conversation = await Conversation.findById(id);
-
-  // validate
-  if (!conversation) throw 'Conversation not found';
-
-  // copy userParam properties to user
-  Object.extend(true,conversation, converParam);
-
-  
+  const conversation = await Conversation.findByIdAndUpdate(id, converParam)
 
   await conversation.save();
 }
