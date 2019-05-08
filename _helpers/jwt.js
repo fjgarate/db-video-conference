@@ -13,7 +13,9 @@ function jwt() {
         "/users/register",
         "/users/delete",
         "/users/doctor",
-        "/conversations/register"
+        "/conversations/register",
+        "/appointments/register",
+
       ]
     });
 }
