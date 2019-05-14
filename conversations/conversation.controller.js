@@ -34,12 +34,7 @@ function addMessage(req, res, next) {
     .catch(err => next(err));
 }
 
-/*function getConversationsByUserName(req, res, next) {
-  conversationService
-    .getConversationsByUserName(req.params.userName)
-    .then(conversation => res.json(conversation))
-    .catch(err => next(err));
-}*/
+
 function getConversationsByUserId(req, res, next) {
   conversationService
     .getConversationsByUserId(req.params.id)
@@ -55,6 +50,7 @@ function getMessageById(req, res, next) {
 }
 
 function update(req, res, next) {
+  console.log('LLega')
   conversationService.update(req.params.id, req.body)
     .then(() => res.json({}))
     .catch(err => next(err));
