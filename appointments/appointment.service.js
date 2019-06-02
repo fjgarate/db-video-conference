@@ -7,14 +7,26 @@ const Appointment = db.Appointment;
 module.exports = {
     create,
     getAll,
+    getToday,
+    getAllCalendar,
     delete: _delete
 };
 
+    date2 = new Date();
 
-async function getAll() {
-    return await Appointment.find().select("-hash");
+async function getAll(id) {
+    return await Appointment.find({userId: id}) ;
 }
 
+async function getToday(id) {
+    console.log('Fecha', date2)
+    return await Appointment.find({ userId: id , date: {$gte:  date2}});
+}
+
+
+async function getAllCalendar(id) {
+    return await Appointment.find({ userId: id }, { userId: 0, id:0, _id:0});
+}
 
 async function create(appointmentParam) {
     const appointment = new Appointment(appointmentParam);
