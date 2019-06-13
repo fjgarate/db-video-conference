@@ -12,11 +12,8 @@ const conversationSchema = new Schema({
       author: { type: String },
       text: String,
       read: { type: Boolean, default: false }
+    }]});
 
-    }
-  ]
-
-});
 /*const messageSchema = Schema({
   createdDate: { type: Date, default: Date.now },
   author: { type: Schema.Types.ObjectId, ref: "User" },
