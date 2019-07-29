@@ -4,8 +4,10 @@ const Schema = mongoose.Schema;
 const conversationSchema = new Schema({
   createdDate: { type: Date, default: Date.now },
   createUsername: { type: String, required: true },
+  createName: { type: String},
   createUserId: { type: String, required: true },
   otherUsername: { type: String },
+  otherName: { type: String },
   participants: [{ type: String }],
   title: { type: String },
   messages: [
