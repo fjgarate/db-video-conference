@@ -6,8 +6,9 @@ const sessionService = require('./session.service');
 router.post('/register', register);   //crea conversacion
 router.get('/', getAll);              //devuelve todas las convesaciones
 router.delete('/:id', _delete);
-router.get('/:id', getById);
+router.get('/session/:id', getBySessionId);
 router.get('/user/:id', getByUserId);
+router.get('/:id', getById);
 module.exports = router;
 function register(req, res, next) {
     sessionService
@@ -21,7 +22,7 @@ function getAll(req, res, next) {
         .then(session => res.json(session))
         .catch(err => next(err));
 }
-function getById(req, res, next) {
+function getBySessionId(req, res, next) {
     sessionService
         .getBySessionId(req.params.id)
         .then(session => res.json(session))
@@ -31,6 +32,12 @@ function getById(req, res, next) {
     sessionService
         .getByUserId(req.params.id)
         .then(session => res.json(session))
+        .catch(err => next(err));
+}
+function getById(req, res, next) {
+    sessionService
+        .getById(req.params.id)
+        .then(user => user ? res.json(user) : res.sendStatus(404))
         .catch(err => next(err));
 }
 function _delete(req, res, next) {

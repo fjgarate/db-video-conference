@@ -8,6 +8,7 @@ module.exports = {
     create,
     getAll,
     getByUserId,
+    getBySessionId,
     getById,
     delete: _delete
 };
@@ -20,8 +21,11 @@ async function getAll() {
 async function getByUserId(id) {
     return await Session.find({ userId: id });
 }
-async function getById(sessionId) {
+async function getBySessionId(sessionId) {
     return await Session.find({ sessionId: sessionId });
+}
+async function getById(id) {
+    return await Session.findById(id).select('-hash');
 }
 async function create(appointmentParam) {
     const session = new Session(appointmentParam);
