@@ -10,7 +10,7 @@ router.get('/session/:id', getBySessionId);
 router.get('/connection/:id', getByConnectionId);
 router.get('/user/:id', getByUserId);
 router.get('/:id', getById);
-router.get('/filter', getByFilter);
+router.get('/filter/', getByFilter);
 module.exports = router;
 function register(req, res, next) {
     sessionService
