@@ -10,7 +10,7 @@ router.get('/session/:id', getBySessionId);
 router.get('/connection/:id', getByConnectionId);
 router.get('/user/:id', getByUserId);
 router.get('/:id', getById);
-router.get('/filter', getByFilter);
+router.get('/filter/:query', getByFilter);
 module.exports = router;
 function register(req, res, next) {
     sessionService
@@ -47,6 +47,8 @@ function getByUserId(req, res, next) {
 }
 function getByFilter(req, res, next) {
     console.log('llega a getByFilter')
+    console.log('query: ' + req.query)
+    console.log('params: ' + req.params)
     sessionService
         .getByFilter(req.query)
         .then(session => session ? res.json(session) : res.sendStatus(404))
