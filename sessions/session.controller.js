@@ -10,7 +10,7 @@ router.get('/session/:id', getBySessionId);
 router.get('/connection/:id', getByConnectionId);
 router.get('/user/:id', getByUserId);
 router.get('/:id', getById);
-router.get('/filter/:query', getByFilter);
+router.get('/filter/:userId/:action', getByFilter);
 module.exports = router;
 function register(req, res, next) {
     sessionService
@@ -19,6 +19,7 @@ function register(req, res, next) {
         .catch(err => next(err));
 }
 function getAll(req, res, next) {
+    console.log('llega a get all')
     sessionService
         .getAll()
         .then(session => res.json(session))
@@ -47,8 +48,8 @@ function getByUserId(req, res, next) {
 }
 function getByFilter(req, res, next) {
     console.log('llega a getByFilter')
-    console.log('query: ' + req.query)
-    console.log('params: ' + req.params)
+    console.log('query: ' + req.query.userId)
+    console.log('params: ' + req.params.userId)
     sessionService
         .getByFilter(req.query)
         .then(session => session ? res.json(session) : res.sendStatus(404))
