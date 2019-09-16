@@ -9,6 +9,7 @@ module.exports = {
     getAll,
     getByUserId,
     getBySessionId,
+    getByConnectionId,
     getById,
     delete: _delete
 };
@@ -23,12 +24,21 @@ async function getByUserId(id) {
 }
 async function getBySessionId(sessionId) {
     return await Session.find({ sessionId: sessionId });
+} 
+async function getByConnectionId(connectionId) {
+    return await Session.find({ connectionId: connectionId });
 }
 async function getById(id) {
     return await Session.findById(id).select('-hash');
 }
-async function create(appointmentParam) {
-    const session = new Session(appointmentParam);
+async function getByFilter(query) {
+    console.log('llega')
+    console.log(query)
+    return 'llega'
+   // return await Session.findById(id).select('-hash');
+}
+async function create(sessionParam) {
+    const session = new Session(sessionParam);
     await session.save();
 }
 async function _delete(id) {
