@@ -36,7 +36,7 @@ async function getByFilter(query) {
     console.log('llega')
     console.log(query)
     return 'llega'
-   // return await Session.findById(id).select('-hash');
+    return await Session.findById('1').select('-hash');
 }
 async function create(sessionParam) {
     const session = new Session(sessionParam);
