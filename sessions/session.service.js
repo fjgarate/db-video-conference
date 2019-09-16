@@ -11,6 +11,7 @@ module.exports = {
     getBySessionId,
     getByConnectionId,
     getById,
+    getByFilter,
     delete: _delete
 };
 
