@@ -36,7 +36,7 @@ async function getByFilter(query) {
     console.log('llega')
     console.log(query)
     //return 'llega'
-    return await Session.find({ query });
+    return await Session.find( query );
 }
 async function create(sessionParam) {
     const session = new Session(sessionParam);
