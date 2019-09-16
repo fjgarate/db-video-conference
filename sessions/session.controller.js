@@ -10,12 +10,21 @@ router.get('/session/:id', getBySessionId);
 router.get('/connection/:id', getByConnectionId);
 router.get('/user/:id', getByUserId);
 router.get('/:id', getById);
-router.get('/filter', getByFilter);
+router.get('/sessions/filter', getByFilter);
 module.exports = router;
 function register(req, res, next) {
     sessionService
         .create(req.body)
         .then(() => res.json({}))
+        .catch(err => next(err));
+}
+function getByFilter(req, res, next) {
+    console.log('llega a getByFilter')
+    console.log('query: ' + req.query.userId)
+    console.log('params: ' + req.params.userId)
+    sessionService
+        .getByFilter(req.query)
+        .then(session => session ? res.json(session) : res.sendStatus(404))
         .catch(err => next(err));
 }
 function getAll(req, res, next) {
@@ -46,15 +55,7 @@ function getByUserId(req, res, next) {
         .then(session => res.json(session))
         .catch(err => next(err));
 }
-function getByFilter(req, res, next) {
-    console.log('llega a getByFilter')
-    console.log('query: ' + req.query.userId)
-    console.log('params: ' + req.params.userId)
-    sessionService
-        .getByFilter(req.query)
-        .then(session => session ? res.json(session) : res.sendStatus(404))
-        .catch(err => next(err));
-}
+
 function getById(req, res, next) {
     sessionService
         .getById(req.params.id)
