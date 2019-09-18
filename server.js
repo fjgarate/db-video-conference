@@ -17,6 +17,7 @@ app.use(jwt());
 app.use('/users', require('./users/users.controller'));
 app.use("/conversations", require("./conversations/conversation.controller"));
 app.use('/appointments', require('./appointments/appointment.controller'));
+app.use('/sessionEvents', require('./sessionEvents/sessionEvent.controller'));
 app.use('/sessions', require('./sessions/session.controller'));
 // global error handler
 app.use(errorHandler);

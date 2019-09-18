@@ -15,6 +15,7 @@ function jwt() {
         "/users/doctor",
         "/conversations/register",
         "/appointments/register",
+        "/sessionEvents/register",
         "/sessions/register",
 
       ]

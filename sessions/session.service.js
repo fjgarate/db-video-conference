@@ -3,13 +3,12 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const db = require('_helpers/db');
 const Session = db.Session;
-
+var ObjectId = require('mongodb').ObjectID;
 module.exports = {
     create,
     getAll,
-    getByUserId,
-    getBySessionId,
-    getByConnectionId,
+    getByDoctorId,
+    getByPatientId,
     getById,
     getByFilter,
     delete: _delete
@@ -20,15 +19,43 @@ date2 = new Date();
 async function getAll() {
     return await Session.find().select('-hash');
 }
-async function getByUserId(id) {
-    return await Session.find({ userId: id });
+async function getByDoctorId(id) {
+
+    console.log('lleg a getByUserId')
+
+    return await Session.aggregate([
+        { $match: { doctorId: new ObjectId(id) } },
+        {
+            $lookup:
+            {
+                from: "users",
+                localField: "patientId",
+                foreignField: "_id",
+                as: "users"
+            }
+        }
+    ]);
+   // return await Session.find({ userId: id });
 }
-async function getBySessionId(sessionId) {
-    return await Session.find({ sessionId: sessionId });
-} 
-async function getByConnectionId(connectionId) {
-    return await Session.find({ connectionId: connectionId });
+async function getByPatientId(id) {
+
+    console.log('lleg a getByUserId')
+
+    return await Session.aggregate([
+        { $match: { patientId: new ObjectId(id) } },
+        {
+            $lookup:
+            {
+                from: "users",
+                localField: "patientId",
+                foreignField: "_id",
+                as: "users"
+            }
+        }
+    ]);
+    // return await Session.find({ userId: id });
 }
+
 async function getById(id) {
     return await Session.findById(id).select('-hash');
 }

@@ -7,5 +7,6 @@ module.exports = {
     User: require('../users/user.model'),
     Conversation: require('../conversations/conversation.model'),
     Appointment: require('../appointments/appointment.model'),
+    SessionEvent: require('../sessionEvents/sessionEvent.model'),
     Session: require('../sessions/session.model')
 };
