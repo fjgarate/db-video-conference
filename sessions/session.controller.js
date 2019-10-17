@@ -12,7 +12,6 @@ router.get('/patient/:id', getByPatientId);
 router.get('/sessions/filter', getByFilter);
 module.exports = router;
 function register(req, res, next) {
-    console.log(req.body)
     sessionService
         .create(req.body)
         .then(() => res.json({}))
@@ -25,7 +24,6 @@ function getByFilter(req, res, next) {
         .catch(err => next(err));
 }
 function getAll(req, res, next) {
-    console.log('llega a get all')
     sessionService
         .getAll()
         .then(session => res.json(session))

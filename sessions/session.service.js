@@ -20,9 +20,6 @@ async function getAll() {
     return await Session.find().select('-hash');
 }
 async function getByDoctorId(id) {
-
-    console.log('lleg a getByUserId')
-
     return await Session.aggregate([
         { $match: { doctorId: new ObjectId(id) } },
         {
@@ -38,9 +35,6 @@ async function getByDoctorId(id) {
    // return await Session.find({ userId: id });
 }
 async function getByPatientId(id) {
-
-    console.log('lleg a getByUserId')
-
     return await Session.aggregate([
         { $match: { patientId: new ObjectId(id) } },
         {
@@ -60,9 +54,6 @@ async function getById(id) {
     return await Session.findById(id).select('-hash');
 }
 async function getByFilter(query) {
-    console.log('llega')
-    console.log(query)
-    //return 'llega'
     return await Session.find( query );
 }
 async function create(sessionParam) {

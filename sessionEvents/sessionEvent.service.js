@@ -21,9 +21,6 @@ async function getAll() {
     return await SessionEvent.find().select('-hash');
 }
 async function getByUserId(id) {
-
-    console.log('lleg a getByUserId')
-
     return await SessionEvent.aggregate([
         { $match: { userId: new ObjectId(id) } },
         {
@@ -48,9 +45,6 @@ async function getById(id) {
     return await SessionEvent.findById(id).select('-hash');
 }
 async function getByFilter(query) {
-    console.log('llega')
-    console.log(query)
-    //return 'llega'
     return await SessionEvent.find( query );
 }
 async function create(sessionParam) {

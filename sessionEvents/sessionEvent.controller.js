@@ -21,16 +21,12 @@ function register(req, res, next) {
             next(err)});
 }
 function getByFilter(req, res, next) {
-    console.log('llega a getByFilter')
-    console.log('query: ' + req.query.userId)
-    console.log('params: ' + req.params.userId)
     sessionEventService
         .getByFilter(req.query)
         .then(session => session ? res.json(session) : res.sendStatus(404))
         .catch(err => next(err));
 }
 function getAll(req, res, next) {
-    console.log('llega a get all')
     sessionEventService
         .getAll()
         .then(session => res.json(session))

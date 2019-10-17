@@ -5,14 +5,14 @@ const db = require('_helpers/db');
 const User = db.User;
 
 module.exports = {
-  authenticate,
-  getAll,
-  getById,
-  create,
-  update,
-  delete: _delete,
-  getPatients,
-  getDoctors
+    authenticate,
+    getAll,
+    getById,
+    create,
+    update,
+    delete: _delete,
+    getPatients,
+    getDoctors
 };
 
 async function authenticate({ username, password }) {
@@ -76,13 +76,10 @@ async function _delete(id) {
     await User.findByIdAndRemove(id);
 }
 async function getPatients(doctorId) {
-  return await User.find({ doctorIds: [doctorId] });
+    return await User.find({ doctorIds: [doctorId] });
 }
 
-async function getDoctors() {
-    //return await User.find( role === 'doctor' );
-    if (User.role==='doctor') {
-    return await User.find().select('-hash');
-    }
+async function getDoctors(patientId) {
+    return await User.find({ patientIds: [patientId] });
 
 }

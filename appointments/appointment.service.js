@@ -19,7 +19,6 @@ async function getAll(id) {
 }
 
 async function getToday(id) {
-    console.log('Fecha', date2)
     return await Appointment.find({ userId: id , date: {$gte:  date2}});
 }
 

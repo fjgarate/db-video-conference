@@ -50,7 +50,6 @@ function getMessageById(req, res, next) {
 }
 
 function update(req, res, next) {
-  console.log('LLega')
   conversationService.update(req.params.id, req.body)
     .then(() => res.json({}))
     .catch(err => next(err));
