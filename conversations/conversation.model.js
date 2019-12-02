@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+const bcrypt = require('bcrypt');
 
 const conversationSchema = new Schema({
   createdDate: { type: Date, default: Date.now },
@@ -24,6 +25,13 @@ const conversationSchema = new Schema({
   text: String,
   read: Boolean
 });*/
+
+conversationSchema.pre('save', function (next) {
+  this.title = bcrypt.hashSync(this.title, saltRounds);
+  next();
+});
+
+
 conversationSchema.set("toJSON", { virtuals: true });
 
 module.exports = mongoose.model("Conversation", conversationSchema);
