@@ -24,7 +24,7 @@ const conversationSchema = new Schema({
   text: String,
   read: Boolean
 });*/
-
+var SALT_WORK_FACTOR = 10;
 conversationSchema.pre('save', function (next) {
   console.log('pasa por aqui')
   var conversation = this;
