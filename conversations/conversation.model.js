@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-
+const bcrypt = require('bcrypt');
 const conversationSchema = new Schema({
   createdDate: { type: Date, default: Date.now },
   createUsername: { type: String, required: true },
