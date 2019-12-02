@@ -25,7 +25,7 @@ const conversationSchema = new Schema({
   read: Boolean
 });*/
 conversationSchema.set("toJSON", { virtuals: true });
-conversationSchema.pre('save', function (next) {
+conversationSchema.pre('register', function (next) {
   console.log('pasa por aqui')
   var conversation = this;
   // only hash the password if it has been modified or is new
