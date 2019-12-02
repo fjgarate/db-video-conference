@@ -24,8 +24,8 @@ const conversationSchema = new Schema({
   text: String,
   read: Boolean
 });*/
-conversationSchema.set("toJSON", { virtuals: true });
-conversationSchema.pre('create', function (next) {
+
+conversationSchema.pre('save', function (next) {
   console.log('pasa por aqui')
   var conversation = this;
   // only hash the password if it has been modified or is new
@@ -42,4 +42,5 @@ conversationSchema.pre('create', function (next) {
     });
   });
 });
+conversationSchema.set("toJSON", { virtuals: true });
 module.exports = mongoose.model("Conversation", conversationSchema);
