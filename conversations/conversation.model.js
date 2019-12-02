@@ -23,7 +23,7 @@ const conversationSchema = new Schema({
   author: { type: Schema.Types.ObjectId, ref: "User" },
   text: String,
   read: Boolean
-});*/
+});
 var SALT_WORK_FACTOR = 10;
 conversationSchema.pre('save', function (next) {
   console.log('pasa por aqui')
@@ -41,6 +41,6 @@ conversationSchema.pre('save', function (next) {
       next();
     });
   });
-});
+});*/
 conversationSchema.set("toJSON", { virtuals: true });
 module.exports = mongoose.model("Conversation", conversationSchema);
