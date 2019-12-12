@@ -10,7 +10,7 @@ router.get('/:id', getById);
 router.get('/doctor/:id', getByDoctorId);
 router.get('/patient/:id', getByPatientId);
 router.get('/sessions/filter', getByFilter);
-router.get('/lastDays', getLastDays);
+router.get('/lastDays/:num', getLastDays);
 module.exports = router;
 function register(req, res, next) {
     sessionService
@@ -61,7 +61,7 @@ function _delete(req, res, next) {
         .catch(err => next(err));
 }
 function getLastDays(req, res, next) {
-    console.log('llega a last days')
+    console.log('llega a last days: ' + req.params.num)
     sessionService
         .getLastDays()
         .then(sessionLastDays => res.json(sessionLastDays))
