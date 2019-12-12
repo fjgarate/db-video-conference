@@ -10,7 +10,7 @@ router.get('/:id', getById);
 router.get('/doctor/:id', getByDoctorId);
 router.get('/patient/:id', getByPatientId);
 router.get('/sessions/filter', getByFilter);
-router.get('/sessions/lastDays', getLastDays);
+router.get('/lastDays', getLastDays);
 module.exports = router;
 function register(req, res, next) {
     sessionService
