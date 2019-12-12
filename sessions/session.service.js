@@ -11,6 +11,7 @@ module.exports = {
     getByPatientId,
     getById,
     getByFilter,
+    getLastDays,
     delete: _delete
 };
 
