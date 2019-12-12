@@ -49,7 +49,18 @@ async function getByPatientId(id) {
     ]);
     // return await Session.find({ userId: id });
 }
+async function getLastDays() {
+    return await Session.aggregate([
+        {
+            $group: {
+                _id: { $substr: ['$startAt', 0, 10] },
+                numberofsessions: { $sum: 1 }
+            }
+        }, { $sort: { "_id": -1 } }
 
+    ]);
+    // return await Session.find({ userId: id });
+}
 async function getById(id) {
     return await Session.findById(id).select('-hash');
 }
