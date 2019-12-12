@@ -51,6 +51,7 @@ async function getByPatientId(id) {
     // return await Session.find({ userId: id });
 }
 async function getLastDays() {
+    console.log('getLastDays()')
     return await Session.aggregate([
         {
             $group: {

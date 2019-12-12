@@ -61,6 +61,7 @@ function _delete(req, res, next) {
         .catch(err => next(err));
 }
 function getLastDays(req, res, next) {
+    console.log('llega a last days')
     sessionService
         .getLastDays()
         .then(sessionLastDays => res.json(sessionLastDays))
