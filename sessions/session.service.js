@@ -58,7 +58,7 @@ async function getLastDays() {
                 _id: { $substr: ['$startAt', 0, 10] },
                 numberofsessions: { $sum: 1 }
             }
-        }, { $sort: { "_id": -1 } }
+        }, { $sort: { "_id": 1 } }
 
     ]);
     // return await Session.find({ userId: id });
