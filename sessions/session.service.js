@@ -18,7 +18,17 @@ module.exports = {
 date2 = new Date();
 
 async function getAll() {
-    return await Session.find().select('-hash');
+    return await Session.aggregate([
+        {
+            $lookup:
+            {
+                from: "users",
+                localField: "patientId",
+                foreignField: "_id",
+                as: "users"
+            }
+        }
+    ]);
 }
 async function getByDoctorId(id) {
     return await Session.aggregate([
